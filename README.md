@@ -1,6 +1,6 @@
 # KV
 
-**TODO: Add description**
+Distributed key-value store in Elixir. Part of the Elixir guides [Introduction to Mix](https://elixir-lang.org/getting-started/mix-otp/introduction-to-mix.html).
 
 ## Installation
 
