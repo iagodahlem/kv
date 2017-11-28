@@ -6,8 +6,11 @@ defmodule KVServer.Application do
   use Application
 
   def start(_type, _args) do
+    port = String.to_integer(System.get_env("PORT") || raise "missing $PORT environment variable")
+
     children = [
-      {Task, fn -> KVServer.accept(4040) end}
+      {Task.Supervisor, name: KVServer.TaskSupervisor},
+      Supervisor.child_spec({Task, fn -> KVServer.accept(port) end}, restart: :permanent)
     ]
 
     opts = [strategy: :one_for_one, name: KVServer.Supervisor]
